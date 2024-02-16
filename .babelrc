@@ -1,0 +1,17 @@
+{
+  "plugins": [
+    [
+      "module-resolver",
+      {
+        "extensions": [".js", ".ts", ".es", ".es6", ".mjs"],
+        "root": ["./src"],
+        "alias": {
+          "@Controllers": "./src/Controllers",
+          "@Db": "./src/db",
+          "@Shared": "./src/shared",
+          "@Routes": "./src/Routes"
+        }
+      }
+    ]
+  ]
+}

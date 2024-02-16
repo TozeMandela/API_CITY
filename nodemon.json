@@ -1,0 +1,6 @@
+{
+  "Match": ["src"],
+  "ext": ".js,.ts",
+  "ignore": [],
+  "exec": "ts-node -r sucrase/register ./src/Server/server.ts"
+}
