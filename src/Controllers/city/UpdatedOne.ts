@@ -22,8 +22,13 @@ export  const ValidatorUpdated = Validation.Validation( (getSchema) => ({
 
 
 export const UpdatedCity = async (req: Request<IparamsProps, {}, ICidade, {}>, res: Response) => {
+	const data = [
+		{
+			id: 1,
+			name: 'Luanda'
+		}
+	];
 
-
-	return res.status(StatusCodes.NOT_IMPLEMENTED).json({info: 'not implemented'});
+	return res.status(StatusCodes.ACCEPTED).json({data});
 
 };

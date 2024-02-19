@@ -18,7 +18,13 @@ export  const ValidatorGetOne = Validation.Validation( (getSchema) => ({
 
 export const getOneCity = async (req: Request<IparamsProps, {}, {}, {}>, res: Response) => {
 
+	const data = [
+		{
+			id: 1,
+			name: 'Luanda'
+		}
+	];
 
-	return res.status(StatusCodes.NOT_IMPLEMENTED).json({info: 'not implemented'});
+	return res.status(StatusCodes.ACCEPTED).json({data});
 
 };

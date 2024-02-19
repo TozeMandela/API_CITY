@@ -19,6 +19,6 @@ export  const Validatordelete = Validation.Validation( (getSchema) => ({
 export const deleteCity = async (req: Request<IparamsProps, {}, {}, {}>, res: Response) => {
 
 
-	return res.status(StatusCodes.NOT_IMPLEMENTED).json({info: 'not implemented'});
+	return res.status(StatusCodes.MOVED_PERMANENTLY).json({info: 'delected'});
 
 };

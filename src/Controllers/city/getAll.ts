@@ -22,7 +22,20 @@ export  const ValidatorGetAll = Validation.Validation( (getSchema) => ({
 
 export const getAllCity = async (req: Request<{}, {}, {}, IqueryProps>, res: Response) => {
 
+	res.setHeader('access-control-expose-headers', 'x-total-account');
+	res.setHeader('x-total-account', 1);
 
-	return res.status(StatusCodes.NOT_IMPLEMENTED).json({info: 'not implemented'});
+	const data = [
+		{
+			id: 1,
+			name: 'Luanda'
+		},
+		{
+			id: 2,
+			name: 'Benguela'
+		},
+	];
+
+	return res.status(StatusCodes.OK).json({data});
 
 };

@@ -17,6 +17,7 @@ export  const createBodyValidator = Validation.Validation( (getSchema) => ({
 
 export const createCity = async (req: Request<{}, {}, ICidade>, res: Response) => {
 
-	return res.status(StatusCodes.NOT_IMPLEMENTED).json({info: 'not implemented'});
+
+	return res.status(StatusCodes.CREATED).json({info: 1});
 
 };

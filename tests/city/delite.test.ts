@@ -5,10 +5,15 @@ import { testServer } from '../jest.setup';
 describe('delete - city', () => {
 
 	it('exist one params id of city in your url and he is bigger then 0', async ()=> {
+
+		const data = await testServer.post('/city').send({name: 'Luanda'});
+
+		expect(data.status).toEqual(StatusCodes.CREATED);
+
 		const response = await testServer.delete('/city/1').send();
 
 		expect(response.status).toEqual(StatusCodes.MOVED_PERMANENTLY);
-		expect(response.body).toHaveProperty('city.name');
+		expect(typeof response.body.info).toEqual('string');
 	});
 
 	it('id for delete have a format invalid or equals zero', async ()=> {

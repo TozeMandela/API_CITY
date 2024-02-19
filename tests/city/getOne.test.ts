@@ -2,16 +2,22 @@ import { StatusCodes } from 'http-status-codes';
 import { testServer } from '../jest.setup';
 
 
-describe('delete - city', () => {
+describe('get - one - city', () => {
 
-	it('exist one params id of city in your url and he is bigger then 0', async ()=> {
-		const response = await testServer.delete('/city/1').send();
+	it('get one', async ()=> {
 
-		expect(response.status).toEqual(StatusCodes.MOVED_PERMANENTLY);
-		expect(response.body).toHaveProperty('city.name');
+		const data = await testServer.post('/city').send({name: 'Luanda'});
+
+		expect(data.status).toEqual(StatusCodes.CREATED);
+
+		const response = await testServer.get('/city/1').send();
+
+		expect(response.status).toEqual(StatusCodes.ACCEPTED);
+		expect(typeof response.body.data).toEqual('object');
+
 	});
 
-	it('id for delete have a format invalid or equals zero', async ()=> {
+	it('erro in get one city', async ()=> {
 		const response = await testServer.delete('/city/0').send();
 
 		expect(response.status).toEqual(StatusCodes.BAD_REQUEST);

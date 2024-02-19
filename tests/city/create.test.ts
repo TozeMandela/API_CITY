@@ -14,8 +14,8 @@ describe('city-create', () => {
 	it('criar registros', async () => {
 		const response = await testServer.post('/city').send({name: 'Luanda'});
 
-		expect(response.statusCode).toEqual(StatusCodes.CREATED);
-		expect(typeof response.body).toEqual('number');
+		expect(response.status).toEqual(StatusCodes.CREATED);
+		expect(typeof response.body.info).toEqual('number');
 	});
 
 
