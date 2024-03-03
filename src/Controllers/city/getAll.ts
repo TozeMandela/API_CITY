@@ -3,6 +3,7 @@ import { Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
 
 import { Validation } from '../../shared';
+import { CityProviders } from '../../db/providers';
 
 interface IqueryProps {
   page?: number;
@@ -25,16 +26,7 @@ export const getAllCity = async (req: Request<{}, {}, {}, IqueryProps>, res: Res
 	res.setHeader('access-control-expose-headers', 'x-total-account');
 	res.setHeader('x-total-account', 1);
 
-	const data = [
-		{
-			id: 1,
-			name: 'Luanda'
-		},
-		{
-			id: 2,
-			name: 'Benguela'
-		},
-	];
+	const data = await CityProviders.getAll();
 
 	return res.status(StatusCodes.OK).json({data});
 

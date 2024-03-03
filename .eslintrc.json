@@ -18,9 +18,13 @@
     ],
     "rules": {
         "@typescript-eslint/ban-types": "off",
+
         "indent": [
             "error",
-            "tab"
+            "tab",
+            {
+              "SwitchCase": 1
+            }
         ],
         "linebreak-style": [
             "error",

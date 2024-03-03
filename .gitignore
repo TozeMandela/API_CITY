@@ -1,0 +1,12 @@
+
+covarage/
+
+
+dist/
+
+yarn-error.log
+
+.sqlite
+.env
+*.sqlite
+node_modules
