@@ -3,10 +3,10 @@ import { Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
 
 import { Validation } from '../../shared';
+import { ICity } from '../../db/models/city';
+import { CityProviders } from '../../db/providers';
 
-interface IparamsProps {
-  id?: number;
-}
+interface IparamsProps extends Partial<Omit<ICity, 'name'>> {}
 
 export  const ValidatorGetOne = Validation.Validation( (getSchema) => ({
 	params: getSchema<IparamsProps>(yup.object().shape({
@@ -18,13 +18,14 @@ export  const ValidatorGetOne = Validation.Validation( (getSchema) => ({
 
 export const getOneCity = async (req: Request<IparamsProps, {}, {}, {}>, res: Response) => {
 
-	const data = [
-		{
-			id: 1,
-			name: 'Luanda'
-		}
-	];
+	const result = await CityProviders.getOne(req.params.id ?? 0);
+  
+	if (result instanceof Error) {
+		return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({errors: {
+			default: result.message
+		}});
+	}
 
-	return res.status(StatusCodes.ACCEPTED).json({data});
+	return res.status(StatusCodes.ACCEPTED).json({data: result});
 
 };

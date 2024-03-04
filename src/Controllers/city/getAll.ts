@@ -28,6 +28,12 @@ export const getAllCity = async (req: Request<{}, {}, {}, IqueryProps>, res: Res
 
 	const data = await CityProviders.getAll();
 
+	if (data instanceof Error) {
+		return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({errors: {
+			default: data.message
+		}});
+	}
+
 	return res.status(StatusCodes.OK).json({data});
 
 };

@@ -4,6 +4,7 @@ import { StatusCodes } from 'http-status-codes';
 
 import { Validation } from '../../shared';
 import { IBodyCidade } from './create';
+import { CityProviders } from '../../db/providers';
 
 interface IparamsProps {
   id?: number;
@@ -22,13 +23,14 @@ export  const ValidatorUpdated = Validation.Validation( (getSchema) => ({
 
 
 export const UpdatedCity = async (req: Request<IparamsProps, {}, IBodyCidade, {}>, res: Response) => {
-	const data = [
-		{
-			id: 1,
-			name: 'Luanda'
-		}
-	];
+	const result = await CityProviders.Updated(req.params.id!, req.body);
 
-	return res.status(StatusCodes.ACCEPTED).json({data});
+	if (result instanceof Error) {
+		return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({errors: {
+			default: result.message
+		}});
+	}
+
+	return res.status(StatusCodes.ACCEPTED).json({data: result});
 
 };
