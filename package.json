@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon .",
     "start": "node ./dist/Server/server.js",
-    "postinstall": "sucrase ./src -d ./dist --transforms typescript,imports",
+    "postinstall": "tsc",
     "test": "jest",
     "knex:migrate": "knex --knexfile ./src/db/knex/Environment.ts migrate:latest",
     "knex:seeds": "knex --knexfile ./src/db/knex/Environment.ts seed:run",
