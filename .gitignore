@@ -2,8 +2,6 @@
 covarage/
 
 
-dist/
-
 yarn-error.log
 
 .sqlite
