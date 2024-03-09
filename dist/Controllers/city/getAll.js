@@ -11,8 +11,10 @@ var _providers = require('../../db/providers');
 
 
 
+
   const ValidatorGetAll = _shared.Validation.Validation( (getSchema) => ({
 	query: getSchema(yup.object().shape({
+		id: yup.number().moreThan(0),
 		page: yup.number().moreThan(0),
 		limit: yup.number().moreThan(0),
 		filter: yup.string(),
@@ -22,11 +24,13 @@ var _providers = require('../../db/providers');
 
 
  const getAllCity = async (req, res) => {
+	const { filter, id, limit, page } = req.query;
 
 	res.setHeader('access-control-expose-headers', 'x-total-account');
 	res.setHeader('x-total-account', 1);
 
-	const data = await _providers.CityProviders.getAll();
+
+	const data = await _providers.CityProviders.getAll(page, limit, filter, id);
 
 	if (data instanceof Error) {
 		return res.status(_httpstatuscodes.StatusCodes.INTERNAL_SERVER_ERROR).json({errors: {
